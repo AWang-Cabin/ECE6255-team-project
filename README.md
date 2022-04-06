@@ -1,2 +1,7 @@
 # ECE6255-team-project
-This is the team project of team 3.
+Arbitrary Modification of Speech Characteristics in Segmental Durations
+
+Kyeomeun Jang, Jiaying Li, Yinuo Wang 
+
+April, 2022
+
