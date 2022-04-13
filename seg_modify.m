@@ -36,12 +36,15 @@ function [speech_out] = seg_modify(speech, t1, t2, target, type, fs)
 
 %% variables
 seg_num = length(target);
-% the number of block for unit time
-numb = length_n / length_t;
+
 
 %% trans time domain input to discrete samples
 length_n = length(speech);
 length_t = length_n / fs;
+
+% the number of block for unit time
+numb = length_n / length_t;
+
 for i = 1:seg_num
     t1(i) = max(round(t1(i)*numb ), 1);
     t2(i) = min(round(t2(i)*numb ), length_n);
