@@ -36,13 +36,15 @@ function [speech_out] = seg_modify(speech, t1, t2, target, type, fs)
 
 %% variables
 seg_num = length(target);
+% the number of block for unit time
+numb = length_n / length_t;
 
 %% trans time domain input to discrete samples
 length_n = length(speech);
 length_t = length_n / fs;
 for i = 1:seg_num
-    t1(i) = max(round(t1(i) / length_t), 1);
-    t2(i) = min(round(t2(i) / length_t), length_n);
+    t1(i) = max(round(t1(i)*numb ), 1);
+    t2(i) = min(round(t2(i)*numb ), length_n);
     if t2(i) < t1(i)
         t2(i) = t1(i);
 end
@@ -58,12 +60,25 @@ if type == "duration"
 elseif type == "scaling"
     for i = 1: seg_num
         seg = speech(t1(i):t2(i));
+        y=solafs(seg',1/target);
+        speech_out_length = length(speech) - length(seg) + length(y)
 
     end
 
 end
 
+for i = 1:seg_num
+    for j = 1:speech_out_length
+        if j < t1(i)
+            speech_out(j) = speech(j);
+        elseif j >= t1(i) & j < (t1(i) + length(y))
+            speech_out(j) = y(j - t1(i) + 1);
+        else 
+            speech_out(j) = speech(t2(i)+ j - (t1(i) + length(y)));
+        end
+    end
+end
 
-speech_out = speech; % useless
+
 end
 
