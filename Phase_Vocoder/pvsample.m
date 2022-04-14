@@ -55,7 +55,7 @@ for tt = t
   % Reduce to -pi:pi range
   dp = dp - 2 * pi * round(dp/(2*pi));
   % Save the column
-  c(:,ocol) = bmag .* exp(j*ph);
+  c(:,ocol) = bmag .* exp(1i*ph);
   % Cumulate phase, ready for next frame
   ph = ph + dphi' + dp;
   ocol = ocol+1;
