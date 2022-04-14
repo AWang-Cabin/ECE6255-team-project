@@ -19,7 +19,7 @@ function [speech_out] = seg_modify(speech, t1, t2, target, type, fs)
 % "duration" type represents the "target" is the desired duration length
 % after modification, and "scaling" type represents the "targer is the
 % scaling factor of original segments.
-
+% Notice that value of numbers in t1 and t2 must be ascending.
 
 % Examples:
 % * Modify a single segment([0.5,1])'s length in the speech to 2s
@@ -36,52 +36,41 @@ function [speech_out] = seg_modify(speech, t1, t2, target, type, fs)
 
 %% variables
 seg_num = length(target);
-
-
 %% trans time domain input to discrete samples
-length_n = length(speech);
-length_t = length_n / fs;
-
-% the number of block for unit time
-numb = length_n / length_t;
-
-for i = 1:seg_num
-    t1(i) = max(round(t1(i)*numb ), 1);
-    t2(i) = min(round(t2(i)*numb ), length_n);
-    if t2(i) < t1(i)
-        t2(i) = t1(i);
-end
-
+t1 = t1*fs;
+t2 = t2*fs;
+speech_out = []; % initialize speech out
+%% for type == "duration" case
+scale_factor = (t2-t1)./(target*fs);
 %% target is the desired duration of the segmants
-if type == "duration"
+if type == "duration"       
     for i = 1: seg_num
-        seg = speech(t1(i):t2(i));
-
+        seg = speech(t1(i):t2(i));           
+        y=solafs(seg',scale_factor(i))';            
+        if i == 1
+            head = speech(1:t1(1)); 
+            speech_out = [head; y];
+        else
+            head = speech(t2(i-1):t1(i));
+            speech_out = [speech_out; head; y];
+        end
     end
-
-%% target is the scaling fatcor of the segments
+    tail = speech(t2(seg_num):end);
+    speech_out = [speech_out; tail];
+%% target is the scaling fatcor of the segments (target > 1 means speedup)
 elseif type == "scaling"
     for i = 1: seg_num
         seg = speech(t1(i):t2(i));
-        y=solafs(seg',1/target);
-        speech_out_length = length(speech) - length(seg) + length(y)
-
-    end
-
-end
-
-for i = 1:seg_num
-    for j = 1:speech_out_length
-        if j < t1(i)
-            speech_out(j) = speech(j);
-        elseif j >= t1(i) & j < (t1(i) + length(y))
-            speech_out(j) = y(j - t1(i) + 1);
-        else 
-            speech_out(j) = speech(t2(i)+ j - (t1(i) + length(y)));
+        y=solafs(seg',target(i))';
+        if i == 1
+            head = speech(1:t1(1)); 
+            speech_out = [head; y];
+        else
+            head = speech(t2(i-1):t1(i));
+            speech_out = [speech_out; head; y];
         end
     end
+    tail = speech(t2(seg_num):end);
+    speech_out = [speech_out; tail];
+    end
 end
-
-
-end
-
