@@ -21,4 +21,3 @@ Report Link: https://gtvault-my.sharepoint.com/:w:/g/personal/jli3269_gatech_edu
 
 Presentation Slide Link: https://gtvault-my.sharepoint.com/:p:/g/personal/jli3269_gatech_edu/EYa9vuexnOpClARAEEeAlF0BR2klbcrgY6NbsxIlgjLXXA?e=Ez3NWk
 
-***Didn't finish the GUI design***
