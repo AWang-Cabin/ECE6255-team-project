@@ -17,11 +17,11 @@ fprintf("=======================================================================
 speech_file = 'input\speech2.wav';
 output_file = 'output\speech2_mod.wav';
 
-start_t = 1.0;
-end_t = 2.0;
-target = 0.5;
-target_type = "duration"; 
-% target_type = "scaling";
+start_t = [1 3];
+end_t = [2 4];
+target = [0.5 0.5];
+% target_type = "duration"; 
+target_type = "scaling";
 
 playSpeech = false;
 
