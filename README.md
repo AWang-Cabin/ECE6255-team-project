@@ -33,15 +33,15 @@ April, 2022
 
 ## Algorithms
   + Time Domain
-    + SOLA
-    + SOLAFS
-    + TD-PSOLA
-    + WSOLA
+    + -[ ] SOLA
+    + -[X] SOLAFS
+    + -[ ] TD-PSOLA
+    + -[ ] WSOLA
   + Frequency Domain
-    + LSEE-MSTFTM
+    + -[ ] LSEE-MSTFTM
   + Parameter Method
-    + Phase Vocoder
-    + Sinusoidal Modeling
+    + -[x] Phase Vocoder
+    + -[ ] Sinusoidal Modeling
 
 ## Supplements
 
