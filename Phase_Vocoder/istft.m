@@ -58,4 +58,4 @@ for b = 0:h:(h*(cols-1))
   ft = [ft, conj(ft([((ftsize/2)):-1:2]))];
   px = real(ifft(ft));
   x((b+1):(b+ftsize)) = x((b+1):(b+ftsize))+px.*win;
-end;
+end
