@@ -20,3 +20,5 @@ April, 2022
 Report Link: https://gtvault-my.sharepoint.com/:w:/g/personal/jli3269_gatech_edu/EZrfg3MLlYFGkZSQJ6Ukuw0BX_Ep6KfD1HzVqqhLUFnhDg?e=p4ulpW
 
 Presentation Slide Link: https://gtvault-my.sharepoint.com/:p:/g/personal/jli3269_gatech_edu/EYa9vuexnOpClARAEEeAlF0BR2klbcrgY6NbsxIlgjLXXA?e=Ez3NWk
+
+***Didn't finish the GUI design***
