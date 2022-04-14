@@ -130,29 +130,19 @@ else
 end
 if flag == 1
     set(handles.text2,'string',"[OK] SUCCESSFUL INPUT");
-    if get(handles.radiobutton1,'value') % scaling mode
-        for i = 1:length(start_t)
-            if i == 1 && start_t(1) == 0
-                y(1:Fs*(end_t(1))) = target(1);
-            else
-                y(Fs*start_t(i):Fs*(end_t(i))) = target(i);   
-            end
-        end
-    elseif get(handles.radiobutton2,'value') % duration mode
-        for i = 1:length(start_t)
-            if i == 1 && start_t(1) == 0
-                y(1:Fs*(end_t(1))) = target(1)/(end_t(1)-start_t(1));
-            else
-                y(Fs*start_t(i):Fs*(end_t(i))) = target(i)/(end_t(1)-start_t(1));   
-            end
-        end
+    if 
+    for i = 1:length(start_t)
+        if i == 1 && start_t(1) == 0
+            y(1:Fs*(end_t(1))) = target(1);
+        else
+            y(Fs*start_t(i):Fs*(end_t(i))) = target(i);   
+        end     
     end
-
     axes(handles.axes8)
     t = linspace(0,length_t,length_n);
     plot(t,y,'r','linewidth',1.0);
     xlabel("Time(s)");
-    ylabel("Target Scaling Factor")
+    ylabel("target factor")
     grid on;
     ylim([0,max(y)+0.2]);
     title('User Input Contour');
