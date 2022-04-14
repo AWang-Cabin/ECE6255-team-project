@@ -36,7 +36,7 @@ April, 2022
     + -[ ] SOLA
     + -[X] SOLAFS
     + -[ ] TD-PSOLA
-    + -[ ] WSOLA
+    + -[X] WSOLA (https://www.mathworks.com/help/audio/ref/stretchaudio.html#mw_af8e9d0f-683d-4593-8776-f3588a02959f)
   + Frequency Domain
     + -[ ] LSEE-MSTFTM
   + Parameter Method
