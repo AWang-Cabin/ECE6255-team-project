@@ -59,12 +59,12 @@ for b = 0:h:(s-f)
   t = fft(u);
   d(:,c) = t(1:(1+f/2))';
   c = c+1;
-end;
+end
 
 % If no output arguments, plot a spectrogram
 if nargout == 0
-  tt = [0:size(d,2)]*h/sr;
-  ff = [0:size(d,1)]*sr/f;
+  tt = (0:size(d,2))*h/sr;
+  ff = (0:size(d,1))*sr/f;
   imagesc(tt,ff,20*log10(abs(d)));
   axis('xy');
   xlabel('time / sec');
