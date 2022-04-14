@@ -39,6 +39,9 @@ seg_num = length(target);
 %% trans time domain input to discrete samples
 t1 = t1*fs;
 t2 = t2*fs;
+if t1(1) == 0
+    t1(1) = 1;
+end
 speech_out = []; % initialize speech out
 %% for type == "duration" case
 scale_factor = (t2-t1)./(target*fs);
