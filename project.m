@@ -19,11 +19,11 @@ output_file = 'output/speech2_mod.wav';
 
 
 
-target_type = "duration"; 
-% target_type = "scaling";
+% target_type = "duration"; 
+target_type = "scaling";
 
-method = "SOLAFS";
-% method = "Phase_Vocoder";
+% method = "SOLAFS";
+method = "Phase_Vocoder";
 % method = "WSOLA";
 
 
@@ -37,9 +37,12 @@ length_n = length(speech); % samples
 length_t = length_n / Fs; % seconds
 
 % soundsc(speech);
-start_t = [1, 2];
-end_t = [2, 3];
-target = [ 0.5 0.4];
+% start_t = [1, 2];
+% end_t = [2, 3];
+% target = [ 0.5 0.4];
+start_t = 0;
+end_t = 5;
+target = 2;
 
 %% Arbitrary modification
 
