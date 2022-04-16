@@ -147,6 +147,7 @@ if flag == 1
             end
         end
     end
+    
 
     axes(handles.axes8)
     t = linspace(0,length_t,length_n);
@@ -161,7 +162,7 @@ end
 
 % --- Executes on button press in pushbutton3. (Modify)
 function pushbutton3_Callback(hObject, eventdata, handles)
-global speech Fs start_t end_t target target_type speech_mod mod_flag speech_flag input_flag
+global speech method Fs start_t end_t target target_type speech_mod mod_flag speech_flag input_flag
 
 if get(handles.radiobutton1,'value')
     target_type = "scaling";
@@ -173,6 +174,21 @@ else
     set(handles.text2,'string',"Please choose a mode.");
     flag = 0;
 end
+
+if get(handles.radiobutton3,'value')
+    method = 'SOLAFS';
+    flag2 = 1;
+elseif get(handles.radiobutton4,'value')
+    method = 'Phase_Vocoder';
+    flag2 = 1;
+elseif get(handles.radiobutton5,'value')
+    method = 'WSOLA';
+    flag2 = 1;
+else
+    set(handles.text2,'string',"Please choose a algorithm.");
+    flag2 = 0;
+end
+
 if speech_flag ~= 15
     set(handles.text2,'string',"Please select a speech file.");
     flag = 0;
@@ -181,8 +197,8 @@ if input_flag ~= 20
     set(handles.text2,'string',"Please input modification parameters.");
     flag = 0;
 end
-if flag == 1
-    speech_mod = seg_modify(speech, start_t, end_t, target, target_type, Fs);
+if flag == 1 & flag2 == 1
+    [a, b, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
     axes(handles.axes5)
     t = linspace(0,length(speech_mod)/Fs,length(speech_mod));
     plot(t,speech_mod);
@@ -203,12 +219,25 @@ function radiobutton1_Callback(hObject, eventdata, handles)
 global target_type
 target_type = "scaling";
 
-
-
 % --- Executes on button press in radiobutton2.
 function radiobutton2_Callback(hObject, eventdata, handles)
 global target_type
 target_type = "duration";
+
+% --- Executes on button press in radiobutton3.
+function radiobutton3_Callback(hObject, eventdata, handles)
+global method
+method = 'SOLAFS';
+
+% --- Executes on button press in radiobutton4.
+function radiobutton4_Callback(hObject, eventdata, handles)
+global method
+method = 'Phase_Vocoder';
+
+% --- Executes on button press in radiobutton5.
+function radiobutton5_Callback(hObject, eventdata, handles)
+global method
+method = 'Phase_Vocoder';
 
 
 % --- Executes on slider movement.

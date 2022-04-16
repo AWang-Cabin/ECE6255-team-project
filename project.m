@@ -14,14 +14,19 @@ fprintf("=======================================================================
 
 %% User Parameters
 
-speech_file = 'input\speech2.wav';
-output_file = 'output\speech2_mod.wav';
+speech_file = 'input/speech2.wav';
+output_file = 'output/speech2_mod.wav';
 
-start_t = [1 3];
-end_t = [2 4];
-target = [0.5 0.5];
-% target_type = "duration"; 
-target_type = "scaling";
+
+
+target_type = "duration"; 
+% target_type = "scaling";
+
+method = "SOLAFS";
+% method = "Phase_Vocoder";
+% method = "WSOLA";
+
+
 
 playSpeech = false;
 
@@ -32,7 +37,9 @@ length_n = length(speech); % samples
 length_t = length_n / Fs; % seconds
 
 % soundsc(speech);
-
+start_t = [1, 2];
+end_t = [2, 3];
+target = [ 0.5 0.4];
 
 %% Arbitrary modification
 
@@ -56,7 +63,7 @@ for i = 1:length(start_t)
 end
 
 % implement modification
-speech_mod = seg_modify(speech, start_t, end_t, target, target_type, Fs);
+[energy_loss, exec_time, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
 
 
 
@@ -97,14 +104,20 @@ spectrogram(speech_mod,100,50,256,Fs,'yaxis');
 title('Modified Speech Spectrogram');
 
 subplot(row,2,5);
+orig_power = pwelch(speech,hamming(500));
 pwelch(speech,hamming(500));
+ylim([-50 -10]);
 grid on;
 title('Original Speech Power Spectrum');
 
 subplot(row,2,6);
+Modified_power = pwelch(speech_mod,hamming(500));
 pwelch(speech_mod,hamming(500));
+ylim([-50 -10]);
 grid on;
 title('Modified Speech Power Spectrum');
 
+%% evaluation performance
+% diff_psd, exec_time, energy _loss
 
-%axis tight;
+diff_psd = sum(abs(orig_power - Modified_power));
