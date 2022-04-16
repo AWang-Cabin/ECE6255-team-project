@@ -186,7 +186,10 @@ if input_flag ~= 20
     flag = 0;
 end
 if flag == 1 && flag2 == 1
-    [~, ~, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
+    [energy_loss, exec_time, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
+    energy_loss_text = strcat("Energy Loss: ", num2str(energy_loss));
+    exec_time_text = strcat("Execute Time: ", num2str(exec_time));
+    set(handles.text2,'string',[energy_loss_text,exec_time_text]);
     axes(handles.axes5)
     t = linspace(0,length(speech_mod)/Fs,length(speech_mod));
     plot(t,speech_mod);
