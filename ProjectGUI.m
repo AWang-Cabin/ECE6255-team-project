@@ -1,6 +1,5 @@
 function varargout = ProjectGUI(varargin)
 
-
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -19,19 +18,14 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-
 % --- Executes just before ProjectGUI is made visible.
 function ProjectGUI_OpeningFcn(hObject, eventdata, handles, varargin)
-
 handles.output = hObject;
-
 % Update handles structure
 guidata(hObject, handles);
 
-
 function varargout = ProjectGUI_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
-
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
@@ -64,8 +58,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit2_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
@@ -75,8 +67,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit3_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
@@ -84,7 +74,6 @@ function edit3_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 
 % --- Executes on button press in pushbutton2.(input)
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -147,8 +136,7 @@ if flag == 1
             end
         end
     end
-    
-
+  
     axes(handles.axes8)
     t = linspace(0,length_t,length_n);
     plot(t,y,'r','linewidth',1.0);
@@ -176,13 +164,13 @@ else
 end
 
 if get(handles.radiobutton3,'value')
-    method = 'SOLAFS';
+    method = "SOLAFS";
     flag2 = 1;
 elseif get(handles.radiobutton4,'value')
-    method = 'Phase_Vocoder';
+    method = "Phase_Vocoder";
     flag2 = 1;
 elseif get(handles.radiobutton5,'value')
-    method = 'WSOLA';
+    method = "WSOLA";
     flag2 = 1;
 else
     set(handles.text2,'string',"Please choose a algorithm.");
@@ -197,8 +185,8 @@ if input_flag ~= 20
     set(handles.text2,'string',"Please input modification parameters.");
     flag = 0;
 end
-if flag == 1 & flag2 == 1
-    [a, b, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
+if flag == 1 && flag2 == 1
+    [~, ~, speech_mod] = seg_modify(speech, method, start_t, end_t, target, target_type, Fs);
     axes(handles.axes5)
     t = linspace(0,length(speech_mod)/Fs,length(speech_mod));
     plot(t,speech_mod);
@@ -227,40 +215,17 @@ target_type = "duration";
 % --- Executes on button press in radiobutton3.
 function radiobutton3_Callback(hObject, eventdata, handles)
 global method
-method = 'SOLAFS';
+method = "SOLAFS";
 
 % --- Executes on button press in radiobutton4.
 function radiobutton4_Callback(hObject, eventdata, handles)
 global method
-method = 'Phase_Vocoder';
+method = "Phase_Vocoder";
 
 % --- Executes on button press in radiobutton5.
 function radiobutton5_Callback(hObject, eventdata, handles)
 global method
-method = 'Phase_Vocoder';
-
-
-% --- Executes on slider movement.
-function slider1_Callback(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
-
-% --- Executes during object creation, after setting all properties.
-function slider1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
-end
-
+method = "WSOLA";
 
 % --- Executes on button press in pushbutton4. (play initial speech)
 function pushbutton4_Callback(hObject, eventdata, handles)
