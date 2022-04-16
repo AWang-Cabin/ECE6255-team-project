@@ -254,3 +254,10 @@ global speech_mod Fs
 [filename,pathname]=uiputfile({'*.wav','speech_modified'},'save modified speech file');
 fullname = [pathname filename];
 audiowrite(fullname, speech_mod, Fs);
+
+
+% --- Executes when figure1 is resized.
+function figure1_SizeChangedFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
