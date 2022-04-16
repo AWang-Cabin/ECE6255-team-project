@@ -55,10 +55,10 @@ if type == "duration"
     for i = 1: seg_num
         seg = speech(t1(i):t2(i)); 
         
-        if method == 'SOLAFS'
+        if method == "SOLAFS"
             y=solafs(seg',scale_factor(i))';   
-        elseif method == 'Phase_Vocoder'
-            y=pvoc(seg',scale_factor(i));
+        elseif method == "Phase_Vocoder"
+            y=pvoc(seg,scale_factor(i));
         else 
              y = stretchAudio(seg,scale_factor(i),"Method","wsola");
         end
@@ -80,14 +80,13 @@ elseif type == "scaling"
     for i = 1: seg_num
         seg = speech(t1(i):t2(i));
         
-        if method == 'SOLAFS'
+        if method == "SOLAFS"
             y=solafs(seg',target(i))';
             
-        elseif method == 'Phase_Vocoder'
-            y=pvoc(seg',target(i))';
+        elseif method == "Phase_Vocoder"
+            y=pvoc(seg,target(i));
         else 
-            y = stretchAudio(seg,target(i),"Method","wsola")';
-            
+            y = stretchAudio(seg,target(i),"Method","wsola");            
         end
         
         if i == 1
