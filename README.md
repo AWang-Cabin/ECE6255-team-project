@@ -22,7 +22,7 @@ April, 2022
 
 
 * For **Users**, please run the `ProjectGUI.m` to launch the graphical tool. 
-  ![image](https://github.com/allenwang-git/ECE6255-team-project/blob/main/GUI.png)
+  ![image](https://github.com/allenwang-git/ECE6255-team-project/blob/main/Media/GUI.png)
 
   As a user, you can load any audio file to the tool by clicking the `Select Your File` button. Our program provides two different modification mode, in the "duration" mode, you may want to give the desired duration length of the selected segments and in the "scaling" mode, you just need to specify the scaling factors of every selected segment. To apply such configuration, please click the `INPUT` button to load it to the program.
   
