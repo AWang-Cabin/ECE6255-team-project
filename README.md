@@ -10,16 +10,16 @@ April, 2022
   
   Running Examples of Calling seg_modify function:
     * **Modify a single segment([0.5,1])'s length in the speech to 2s**
-    
+      ```
       out = seg_modify(speech,"SOLAFS", 0.5, 1.0, 2.0, "duration");
-
+      ```
     * **Modify three segments in the speech with different scaling factors**
-      
-      t1 = [0.5, 1.0, 2.0];\
-      t2 = [0.88, 1.5, 3.0];\
-      target = [1.0, 1.5, 0.5];\
+      ```
+      t1 = [0.5, 1.0, 2.0];
+      t2 = [0.88, 1.5, 3.0];
+      target = [1.0, 1.5, 0.5];
       out = seg_modify(speech, "SOLAFS", t1, t2, target, "scaling");
-
+      ```
 
 * For **Users**, please run the `ProjectGUI.m` to launch the graphical tool. 
   ![image](https://github.com/allenwang-git/ECE6255-team-project/blob/main/Media/GUI.png)
