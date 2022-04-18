@@ -24,7 +24,9 @@ April, 2022
 * For **Users**, please run the `ProjectGUI.m` to launch the graphical tool. 
   ![image](https://github.com/allenwang-git/ECE6255-team-project/blob/main/Media/GUI.png)
 
-  As a user, you can load any audio file to the tool by clicking the `Select Your File` button. Our program provides two different modification mode, in the "duration" mode, you may want to give the desired duration length of the selected segments and in the "scaling" mode, you just need to specify the scaling factors of every selected segment. To apply such configuration, please click the `INPUT` button to load it to the program.
+  As a user, you can load any audio file to the tool by clicking the `Select Your File` button. Our program provides two different modification mode, in the "duration" mode, you may want to give the desired duration length of the selected segments and in the "scaling" mode, you just need to specify the scaling factors of every selected segment. 
+  
+  Users can also select one of the three algorithms (SOLAFS, WSOLA, Phase Vocoder) provided in the tool. To apply such configuration, please click the `INPUT` button to load it to the program.
   
   To modify the segments with your desired parameters, you can simply click the `Modify` button and you will see the modified audio waveform and spectrugram plotted in the second column. In addtion, you can play or save the modified speech if you want.
 

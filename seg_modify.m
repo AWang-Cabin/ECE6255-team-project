@@ -7,11 +7,13 @@ function [energy_loss, exec_time, speech_out] = seg_modify(speech, method, t1, t
 % t2 -- ending time of segmantal duration (sec)
 % target -- target duration or scaling factor
 % type -- target parameter type ("duration", "scaling")
-% speech_out -- signal after modification
 % fs -- sampling frequency
+% speech_out -- signal after modification
+% energy_loss -- signal energy loss after modification
+% exec_time -- algorithm execution time
 
 % Description:
-% Methods can be one of 'SOLAFS', 'Phase_Vocoder', 'WSOLA'
+% * Methods can be one of 'SOLAFS', 'Phase_Vocoder', 'WSOLA'
 % * "t1", "t2", "target" can be either single values representing a single 
 % segment to be modified or arrays with the same length representing multiple
 % segments. However, there cannot be any overlaps in the segmental time
@@ -25,13 +27,13 @@ function [energy_loss, exec_time, speech_out] = seg_modify(speech, method, t1, t
 
 % Examples:
 % * Modify a single segment([0.5,1])'s length in the speech to 2s
-%   out = seg_modify(speech, 0.5, 1.0, 2.0, "duration");
+%   out = seg_modify(speech, "WSOLA", 0.5, 1.0, 2.0, "duration");
 %
 % * Modify three segments in the speech with different scaling factors
 %   t1 = [0.5, 1.0, 2.0];
 %   t2 = [0.88, 1.5, 3.0];
 %   target = [1.0, 1.5, 0.5];
-%   out = seg_modify(speech, t1, t2, target, "scaling");
+%   out = seg_modify(speech, "SOLAFS", t1, t2, target, "scaling");
 % 
 % 
 % Kyeomeun Jang, Jiaying Li, Yinuo Wang
@@ -56,11 +58,11 @@ if type == "duration"
         seg = speech(t1(i):t2(i)); 
         
         if method == "SOLAFS"
-            y=solafs(seg',scale_factor(i))';   
+            y = solafs(seg',scale_factor(i))';   
         elseif method == "Phase_Vocoder"
-            y=pvoc(seg,scale_factor(i));
+            y = pvoc(seg,scale_factor(i));
         else 
-             y = stretchAudio(seg,scale_factor(i),"Method","wsola");
+            y = stretchAudio(seg,scale_factor(i),"Method","wsola");
         end
         exec_time_temp(i) = toc;
         if i == 1
@@ -74,7 +76,7 @@ if type == "duration"
     tail = speech(t2(seg_num):end);
     speech_out = [speech_out; tail];
     exec_time = toc;
-%% target is the scaling fatcor of the segments (target > 1 means speedup)
+%% target is the scaling fatcor of the segments (target < 1 means speedup)
 elseif type == "scaling"
     tic
     for i = 1: seg_num
@@ -100,7 +102,7 @@ elseif type == "scaling"
     tail = speech(t2(seg_num):end);
     speech_out = [speech_out; tail];
     
-    if length(speech_out) == 0
+    if isempty(speech_out)
     end
     exec_time = toc;
 end
