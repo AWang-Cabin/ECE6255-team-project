@@ -46,7 +46,7 @@ April, 2022
 
 ## Supplements
 
-Report Link: https://gtvault-my.sharepoint.com/:w:/g/personal/jli3269_gatech_edu/EZrfg3MLlYFGkZSQJ6Ukuw0BX_Ep6KfD1HzVqqhLUFnhDg?e=p4ulpW
+[Report Link](https://github.com/JiayingLi0803/ECE6255-team-project/tree/main/Report_LaTex)
 
-Presentation Slide Link: https://gtvault-my.sharepoint.com/:p:/g/personal/jli3269_gatech_edu/EYa9vuexnOpClARAEEeAlF0BR2klbcrgY6NbsxIlgjLXXA?e=Ez3NWk
+[Presentation Slide Link](https://gtvault-my.sharepoint.com/:p:/g/personal/jli3269_gatech_edu/EYa9vuexnOpClARAEEeAlF0BR2klbcrgY6NbsxIlgjLXXA?e=Ez3NWk)
 
