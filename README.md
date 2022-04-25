@@ -46,7 +46,7 @@ April, 2022
 
 ## Supplements
 
-[Report Link](https://github.com/JiayingLi0803/ECE6255-team-project/tree/main/Report_LaTex)
+[Report Link](https://github.com/allenwang-git/ECE6255-team-project/blob/main/Report_LaTex/Arbitrary_Modification_of_Speech_Characteristics_in_Segmental_Durations__final.pdf)
 
 [Presentation Slide Link](https://gtvault-my.sharepoint.com/:p:/g/personal/jli3269_gatech_edu/EYa9vuexnOpClARAEEeAlF0BR2klbcrgY6NbsxIlgjLXXA?e=Ez3NWk)
 
